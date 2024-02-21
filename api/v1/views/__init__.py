@@ -23,6 +23,10 @@ from api.v1.views.amenities import *
 from api.v1.views.users import *
 from api.v1.views.places import *
 
+
+# Import the new view file
+from api.v1.views import places_reviews
+
 # Include other view files
 from api.v1.views import states, cities, amenities, users, places
 
