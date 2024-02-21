@@ -20,9 +20,10 @@ app.register_blueprint(app_views)
 @app.teardown_appcontext
 def teardown_appcontext(error):
     storage.close()
-    
 
-# Create a handler for 404 errors that returns a JSON-formatted 404 status code response
+
+# Create a handler for 404 errors that returns a
+# JSON-formatted 404 status code response
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Not found"}), 404
