@@ -71,7 +71,7 @@ class BaseModel:
     #     if "_sa_instance_state" in new_dict:
     #         del new_dict["_sa_instance_state"]
     #     return new_dict
-    
+
     def to_dict(self, include_password=False):
         """Convert the instance attributes to a dictionary."""
         dictionary = {}
