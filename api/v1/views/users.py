@@ -1,21 +1,27 @@
 #!/usr/bin/python3
 """Users view module documentation is here!"""
 
+# Import Flask and related modules
 from flask import Flask, jsonify, abort, request
+
+# Import the 'app_views' blueprint
 from api.v1.views import app_views
+
+# Import the necessary models
 from models import storage
 from models.user import User
 
+# Create a Flask application instance
 app_views = Flask(__name__)
 
-
+# Retrieve the list of all users
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_all_users():
     """Retrieves the list of all User objects"""
     users = storage.all(User).values()
     return jsonify([user.to_dict() for user in users])
 
-
+# Retrieve a specific user by user_id
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 def get_user(user_id):
     """Retrieves a User object by user_id"""
@@ -24,7 +30,7 @@ def get_user(user_id):
         abort(404)
     return jsonify(user.to_dict())
 
-
+# Delete a user by user_id
 @app_views.route('/users/<user_id>', methods=['DELETE'], strict_slashes=False)
 def delete_user(user_id):
     """Deletes a User object by user_id"""
@@ -35,7 +41,7 @@ def delete_user(user_id):
     storage.save()
     return jsonify({}), 200
 
-
+# Create a new user
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def create_user():
     """Creates a User"""
@@ -53,7 +59,7 @@ def create_user():
 
     return jsonify(new_user.to_dict()), 201
 
-
+# Update a user by user_id
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user(user_id):
     """Updates a User object by user_id"""
@@ -73,7 +79,6 @@ def update_user(user_id):
 
     storage.save()
     return jsonify(user.to_dict()), 200
-
 
 if __name__ == "__main__":
     pass

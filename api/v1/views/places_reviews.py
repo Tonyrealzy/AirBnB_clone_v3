@@ -5,16 +5,22 @@
         _type_: _description_
 """
 
-app_views = Flask(__name__)
-
+# Import Flask and related modules
 from flask import Flask, jsonify, abort, request
+
+# Import the 'app_views' blueprint
 from api.v1.views import app_views
+
+# Import the necessary models
 from models import storage
 from models.place import Place
 from models.review import Review
 from models.user import User
 
+# Create a Flask application instance
+app_views = Flask(__name__)
 
+# Retrieve the list of reviews for a specific place
 @app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
 def get_reviews_by_place(place_id):
     place = storage.get(Place, place_id)
@@ -23,7 +29,7 @@ def get_reviews_by_place(place_id):
     reviews = [review.to_dict() for review in place.reviews]
     return jsonify(reviews)
 
-
+# Retrieve a specific review by review_id
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_review(review_id):
     review = storage.get(Review, review_id)
@@ -31,10 +37,9 @@ def get_review(review_id):
         abort(404)
     return jsonify(review.to_dict())
 
-
+# Delete a review by review_id
 @app_views.route('/reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
-
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
@@ -42,7 +47,7 @@ def delete_review(review_id):
     storage.save()
     return jsonify({}), 200
 
-
+# Create a new review for a specific place
 @app_views.route('/places/<place_id>/reviews', methods=['POST'], strict_slashes=False)
 def create_review(place_id):
     place = storage.get(Place, place_id)
@@ -67,7 +72,7 @@ def create_review(place_id):
 
     return jsonify(new_review.to_dict()), 201
 
-
+# Update a review by review_id
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_review(review_id):
     review = storage.get(Review, review_id)
