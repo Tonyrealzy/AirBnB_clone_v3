@@ -8,7 +8,8 @@ from models.city import City
 from models.state import State
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
         _type_: _description_
 """
 @app_views.route('/states/<state_id>/cities', methods=['GET'],
@@ -22,7 +23,8 @@ def get_cities_by_state(state_id):
     return jsonify(cities)
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
@@ -34,7 +36,8 @@ def get_city(city_id):
     return jsonify(city.to_dict())
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
@@ -48,7 +51,8 @@ def delete_city(city_id):
     return jsonify({}), 200
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/states/<state_id>/cities', methods=['POST'],
@@ -72,7 +76,8 @@ def create_city(state_id):
     return jsonify(new_city.to_dict()), 201
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)

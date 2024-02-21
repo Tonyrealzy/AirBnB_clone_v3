@@ -8,7 +8,6 @@ from models.user import User
 
 
 """_summary_
-
 Returns:
     _type_: _description_
 """
@@ -20,7 +19,6 @@ def get_all_users():
 
 
 """_summary_
-
 Returns:
     _type_: _description_
 """
@@ -34,7 +32,6 @@ def get_user(user_id):
 
 
 """_summary_
-
 Returns:
     _type_: _description_
 """
@@ -50,7 +47,6 @@ def delete_user(user_id):
 
 
 """_summary_
-
 Returns:
     _type_: _description_
 """
@@ -73,7 +69,6 @@ def create_user():
 
 
 """_summary_
-
 Returns:
     _type_: _description_
 """

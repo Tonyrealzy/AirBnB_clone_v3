@@ -7,7 +7,8 @@ from models import storage
 from models.state import State
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
 _type_: _description_
 """
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -17,7 +18,8 @@ def get_all_states():
     return jsonify([state.to_dict() for state in states])
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
         _type_: _description_
 """
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
@@ -29,7 +31,8 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/states/<state_id>', methods=['DELETE'],
@@ -48,7 +51,8 @@ if __name__ == "__main__":
     pass
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
@@ -67,7 +71,8 @@ def create_state():
     return jsonify(new_state.to_dict()), 201
 
 
-"""_summary_Returns:
+"""_summary_
+Returns:
     _type_: _description_
 """
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
