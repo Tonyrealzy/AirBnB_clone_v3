@@ -26,13 +26,9 @@ from api.v1.views import app_views
 from models import storage
 from models.state import State
 
+app_views = Flask(__name__)
 
-"""
-Retrieves the list of all State objects.
 
-Returns:
-    JSON: A JSON response with the list of all State objects.
-"""
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_all_states():
     """Retrieves the list of all State objects"""
@@ -40,12 +36,6 @@ def get_all_states():
     return jsonify([state.to_dict() for state in states])
 
 
-"""
-Retrieves the list of all State objects.
-
-Returns:
-    JSON: A JSON response with the list of all State objects.
-"""
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def get_state(state_id):
     """Retrieves a State object by state_id"""
@@ -55,12 +45,6 @@ def get_state(state_id):
     return jsonify(state.to_dict())
 
 
-"""
-Retrieves the list of all State objects.
-
-Returns:
-    JSON: A JSON response with the list of all State objects.
-"""
 @app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def delete_state(state_id):
     """Deletes a State object by state_id"""
@@ -72,12 +56,6 @@ def delete_state(state_id):
     return jsonify({}), 200
 
 
-"""
-Retrieves the list of all State objects.
-
-Returns:
-    JSON: A JSON response with the list of all State objects.
-"""
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     """Creates a State"""
@@ -94,12 +72,6 @@ def create_state():
     return jsonify(new_state.to_dict()), 201
 
 
-"""
-Retrieves the list of all State objects.
-
-Returns:
-    JSON: A JSON response with the list of all State objects.
-"""
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
     """Updates a State object by state_id"""

@@ -5,8 +5,9 @@
         _type_: _description_
 """
 
+app_views = Flask(__name__)
 
-from flask import jsonify, abort, request
+from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
 from models.place import Place
@@ -14,15 +15,6 @@ from models.review import Review
 from models.user import User
 
 
-"""
-Retrieves the list of all Review objects of a Place.
-
-Args:
-    place_id (str): The ID of the Place.
-
-Returns:
-    JSON: A JSON response containing the list of Review objects.
-"""
 @app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
 def get_reviews_by_place(place_id):
     place = storage.get(Place, place_id)
@@ -32,15 +24,6 @@ def get_reviews_by_place(place_id):
     return jsonify(reviews)
 
 
-"""
-Retrieves a Review object by review_id.
-
-Args:
-    review_id (str): The ID of the Review.
-
-Returns:
-    JSON: A JSON response containing the Review object.
-"""
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_review(review_id):
     review = storage.get(Review, review_id)
@@ -49,15 +32,6 @@ def get_review(review_id):
     return jsonify(review.to_dict())
 
 
-"""
-Deletes a Review object by review_id.
-
-Args:
-    review_id (str): The ID of the Review.
-
-Returns:
-    JSON: An empty dictionary with the status code 200.
-"""
 @app_views.route('/reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
 
@@ -69,15 +43,6 @@ def delete_review(review_id):
     return jsonify({}), 200
 
 
-"""
-Creates a Review for a Place.
-
-Args:
-    place_id (str): The ID of the Place.
-
-Returns:
-    JSON: A JSON response containing the new Review object.
-"""
 @app_views.route('/places/<place_id>/reviews', methods=['POST'], strict_slashes=False)
 def create_review(place_id):
     place = storage.get(Place, place_id)
@@ -103,15 +68,6 @@ def create_review(place_id):
     return jsonify(new_review.to_dict()), 201
 
 
-"""
-Updates a Review object by review_id.
-
-Args:
-    review_id (str): The ID of the Review.
-
-Returns:
-    JSON: A JSON response containing the updated Review object.
-"""
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_review(review_id):
     review = storage.get(Review, review_id)

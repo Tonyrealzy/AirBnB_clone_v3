@@ -7,11 +7,9 @@ from models import storage
 from models.city import City
 from models.state import State
 
+app_views = Flask(__name__)
 
-"""_summary_
-Returns:
-        _type_: _description_
-"""
+
 @app_views.route('/states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
 def get_cities_by_state(state_id):
@@ -23,10 +21,6 @@ def get_cities_by_state(state_id):
     return jsonify(cities)
 
 
-"""_summary_
-Returns:
-    _type_: _description_
-"""
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
 def get_city(city_id):
     """Retrieves a City object by city_id"""
@@ -36,10 +30,6 @@ def get_city(city_id):
     return jsonify(city.to_dict())
 
 
-"""_summary_
-Returns:
-    _type_: _description_
-"""
 @app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
 def delete_city(city_id):
     """Deletes a City object by city_id"""
@@ -51,10 +41,6 @@ def delete_city(city_id):
     return jsonify({}), 200
 
 
-"""_summary_
-Returns:
-    _type_: _description_
-"""
 @app_views.route('/states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
 def create_city(state_id):
@@ -76,10 +62,6 @@ def create_city(state_id):
     return jsonify(new_city.to_dict()), 201
 
 
-"""_summary_
-Returns:
-    _type_: _description_
-"""
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
 def update_city(city_id):
     """Updates a City object by city_id"""
