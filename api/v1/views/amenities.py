@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Amenities view module"""
+"""Amenities view module documentation is here!"""
 
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views

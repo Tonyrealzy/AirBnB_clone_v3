@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Cities view module"""
+"""Cities view module, documentation is here!"""
 
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
