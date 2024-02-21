@@ -23,5 +23,8 @@ from api.v1.views.amenities import *
 from api.v1.views.users import *
 from api.v1.views.places import *
 
+# Include other view files
+from api.v1.views import states, cities, amenities, users, places
+
 if __name__ == "__main__":
     pass
