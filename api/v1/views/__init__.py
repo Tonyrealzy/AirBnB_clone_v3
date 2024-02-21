@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""_summary_"""
+
+
 from flask import Blueprint
 
 # Create a variable app_views which is an instance of Blueprint
