@@ -24,6 +24,9 @@ class User(BaseModel, Base):
         first_name = ""
         last_name = ""
 
-    def __init__(self, *args, **kwargs):
-        """initializes user"""
-        super().__init__(*args, **kwargs)
+    def __init__(self, password, **kwargs):
+        super().__init__(**kwargs)
+        self.password = self.hash_password(password)
+
+    def hash_password(self, password):
+        return hashlib.md5(password.encode()).hexdigest()

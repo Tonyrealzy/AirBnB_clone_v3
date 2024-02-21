@@ -4,13 +4,13 @@ Contains the FileStorage class
 """
 
 import json
+from models.user import User
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
 from models.review import Review
 from models.state import State
-from models.user import User
 
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
@@ -41,10 +41,12 @@ class FileStorage:
             self.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """Serializes __objects to the JSON file (path: __file_path)"""
         json_objects = {}
         for key in self.__objects:
-            json_objects[key] = self.__objects[key].to_dict()
+            obj = self.__objects[key]
+            include_password = isinstance(obj, User) and key.startswith("User.")
+            json_objects[key] = obj.to_dict(include_password=include_password)
         with open(self.__file_path, 'w') as f:
             json.dump(json_objects, f)
 
