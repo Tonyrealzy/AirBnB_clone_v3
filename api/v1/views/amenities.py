@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Amenities view module documentation is here!"""
 
+from . import app_views
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
