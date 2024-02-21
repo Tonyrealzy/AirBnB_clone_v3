@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """_summary_"""
 
-
 import os
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 
 # Create a FLask instance
 app = Flask(__name__)
@@ -14,13 +14,14 @@ app = Flask(__name__)
 # instance app
 app.register_blueprint(app_views)
 
+# Enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Declare a method to handle @app.teardown_appcontext that
 # calls storage.close()
 @app.teardown_appcontext
 def teardown_appcontext(error):
     storage.close()
-
 
 # Create a handler for 404 errors that returns a
 # JSON-formatted 404 status code response
