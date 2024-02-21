@@ -13,7 +13,10 @@ app = Flask(__name__)
 # Register the blueprint app_views to your Flask instance app
 app.register_blueprint(app_views)
 
-# Declare a method to handle @app.teardown_appcontext that calls storage.close()
+# Declare a method to handle @app.teardown_appcontext that
+# calls storage.close()
+
+
 @app.teardown_appcontext
 def teardown_appcontext(error):
     storage.close()
