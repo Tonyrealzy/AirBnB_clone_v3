@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""_summary_"""
+"""Initialize views package"""
 
 
 from flask import Blueprint
@@ -14,3 +14,11 @@ app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
 
 # Import the views module
 from . import index
+
+# Import the new file
+from api.v1.views.index import *
+from api.v1.views.states import *
+from api.v1.views.cities import *
+
+if __name__ == "__main__":
+    pass
