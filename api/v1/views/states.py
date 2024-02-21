@@ -7,10 +7,6 @@ from models import storage
 from models.state import State
 
 
-"""_summary_
-    Returns:
-        _type_: _description_
-"""
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_all_states():
     """Retrieves the list of all State objects"""
@@ -18,11 +14,6 @@ def get_all_states():
     return jsonify([state.to_dict() for state in states])
 
 
-"""_summary_
-
-    Returns:
-        _type_: _description_
-"""
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def get_state(state_id):
     """Retrieves a State object by state_id"""
