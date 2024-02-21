@@ -14,17 +14,17 @@ from models.review import Review
 from models.user import User
 
 
+"""
+Retrieves the list of all Review objects of a Place.
+
+Args:
+    place_id (str): The ID of the Place.
+
+Returns:
+    JSON: A JSON response containing the list of Review objects.
+"""
 @app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
 def get_reviews_by_place(place_id):
-    """
-    Retrieves the list of all Review objects of a Place.
-
-    Args:
-        place_id (str): The ID of the Place.
-
-    Returns:
-        JSON: A JSON response containing the list of Review objects.
-    """
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
@@ -32,34 +32,35 @@ def get_reviews_by_place(place_id):
     return jsonify(reviews)
 
 
+"""
+Retrieves a Review object by review_id.
+
+Args:
+    review_id (str): The ID of the Review.
+
+Returns:
+    JSON: A JSON response containing the Review object.
+"""
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_review(review_id):
-    """
-    Retrieves a Review object by review_id.
-
-    Args:
-        review_id (str): The ID of the Review.
-
-    Returns:
-        JSON: A JSON response containing the Review object.
-    """
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
     return jsonify(review.to_dict())
 
 
+"""
+Deletes a Review object by review_id.
+
+Args:
+    review_id (str): The ID of the Review.
+
+Returns:
+    JSON: An empty dictionary with the status code 200.
+"""
 @app_views.route('/reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
-    """
-    Deletes a Review object by review_id.
 
-    Args:
-        review_id (str): The ID of the Review.
-
-    Returns:
-        JSON: An empty dictionary with the status code 200.
-    """
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
@@ -68,17 +69,17 @@ def delete_review(review_id):
     return jsonify({}), 200
 
 
+"""
+Creates a Review for a Place.
+
+Args:
+    place_id (str): The ID of the Place.
+
+Returns:
+    JSON: A JSON response containing the new Review object.
+"""
 @app_views.route('/places/<place_id>/reviews', methods=['POST'], strict_slashes=False)
 def create_review(place_id):
-    """
-    Creates a Review for a Place.
-
-    Args:
-        place_id (str): The ID of the Place.
-
-    Returns:
-        JSON: A JSON response containing the new Review object.
-    """
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
@@ -102,17 +103,17 @@ def create_review(place_id):
     return jsonify(new_review.to_dict()), 201
 
 
+"""
+Updates a Review object by review_id.
+
+Args:
+    review_id (str): The ID of the Review.
+
+Returns:
+    JSON: A JSON response containing the updated Review object.
+"""
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_review(review_id):
-    """
-    Updates a Review object by review_id.
-
-    Args:
-        review_id (str): The ID of the Review.
-
-    Returns:
-        JSON: A JSON response containing the updated Review object.
-    """
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
